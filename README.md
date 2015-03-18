@@ -11,11 +11,12 @@ Features:
 Currenlty implemented for bar style=3 only.
 
 # Example
-iters <- 100
+```
+> iters <- 100
 pb <- txtProgressBarETA(0,iters,style=3)
 for(i in 1:iters) {
   Sys.sleep(1)
   setTxtProgressBar(pb, i)
 }
-
 |===========                                                           |  16%, ETA 01:24
+````
