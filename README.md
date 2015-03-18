@@ -8,7 +8,7 @@ Features:
 + Shows the significant part of Years:Months:Days:Hours:Minutes:Seconds time (or HH:MM:SS at a minumum).
 
 # NOTE
-Currenlty implemented for bar style=3 only.
+Currently implemented for bar style=3 only.
 
 # Example
 ```
