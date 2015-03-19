@@ -16,7 +16,7 @@ txtProgressBarETA <-
     .nb <- 0L
     .pc <- -1L
     .time0 <- proc.time()["elapsed"]
-    .timenow <- 0
+    .timenow <- .time0
     
     nw <- nchar(char, "w")
     if (is.na(width)) {
@@ -72,7 +72,7 @@ txtProgressBarETA <-
         timenow <- proc.time()[["elapsed"]]
         if (nb == .nb && pc == .pc && timenow-.timenow<1)
             return()
-        .timenow <- timenow
+        .timenow <<- timenow
         span <- timenow-.time0
         timeXiter <- span/(.val-min)
         ETA <- (max-.val) * timeXiter
@@ -148,11 +148,12 @@ formatTime <- function(seconds)
 
 if(F)
     {
-
-        iters <- 10000
-        pb <- txtProgressBarT(0,iters,style=3)
+        ##test
+        
+        iters <- 10000000
+        pb <- txtProgressBarETA(0,iters,style=3)
         for(i in 1:iters) {
-            Sys.sleep(1)
+            a <- runif(1000000)
             setTxtProgressBar(pb, i)
         }
         
