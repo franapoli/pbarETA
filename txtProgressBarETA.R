@@ -15,9 +15,10 @@ txtProgressBarETA <-
     .killed <- FALSE
     .nb <- 0L
     .pc <- -1L
-    .time0 <- proc.time()["elapsed"]
-    .timenow <- .time0
-    
+    .time0 <- NA
+    .timenow <- NA
+    .firstUpdate <- T
+
     nw <- nchar(char, "w")
     if (is.na(width)) {
         width <- getOption("width")
@@ -63,13 +64,19 @@ txtProgressBarETA <-
         }
         .nb <<- nb
     }
-    up3 <- function(value) {
+    up3 <- function(value, calledOnCreation=F) {
+        timenow <- proc.time()[["elapsed"]]
+        if(!calledOnCreation && .firstUpdate) {
+            .time0 <<- timenow
+            .timenow <<- timenow
+            .firstUpdate <<- F
+        }
         if (!is.finite(value) || value < min || value > max) 
             return()
         .val <<- value
         nb <- round(width * (value - min)/(max - min))
         pc <- round(100 * (value - min)/(max - min))
-        timenow <- proc.time()[["elapsed"]]
+
         if (nb == .nb && pc == .pc && timenow-.timenow<1)
             return()
         .timenow <<- timenow
@@ -95,7 +102,7 @@ txtProgressBarETA <-
         .killed <<- TRUE
     }
     up <- switch(style, up1, up2, up3)
-    up(initial)
+    up(initial, T)
 
     structure(list(getVal = getVal, up = up, kill = kill), class = "txtProgressBar")
 }
@@ -148,14 +155,23 @@ formatTime <- function(seconds)
 
 if(F)
     {
-        ##test
-        
+        ## short-iterations test        
         iters <- 10000000
         pb <- txtProgressBarETA(0,iters,style=3)
         for(i in 1:iters) {
-            a <- runif(1000000)
             setTxtProgressBar(pb, i)
+            a <- runif(1000000)
         }
+
+        ## fixed-time-iterations test
+        iters <- 60*10
+        pb <- txtProgressBarETA(1,iters,style=3)
+        system.time(
+        for(i in 1:iters) {
+            setTxtProgressBar(pb, i)
+            Sys.sleep(3)
+        }
+        )
         
     }
     

@@ -9,14 +9,15 @@ Features:
 
 # NOTE
 Currently implemented for bar style=3 only.
+Call setTxtProgressBar first in a loop in order to get the timer started.
 
 # Example
 ```
 > iters <- 100
 pb <- txtProgressBarETA(0,iters,style=3)
 for(i in 1:iters) {
-  Sys.sleep(1)
   setTxtProgressBar(pb, i)
+  Sys.sleep(1)
 }
 |===========                                                           |  16%, ETA 01:24
 ````
