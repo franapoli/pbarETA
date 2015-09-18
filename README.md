@@ -25,11 +25,11 @@ version from github as follows:
 ## Example
 ```
 pb <- txtProgressBar()
-for(i in 1:10) {
+for(i in 1:100) {
   Sys.sleep(1)
-  setTxtProgressBar(pb, i/10)
+  setTxtProgressBar(pb, i/100)
 }
-|===========                                                           |  16%, ETA 01:24
+|===========                                                           |  10%, ETA 01:24
 ````
 
 
