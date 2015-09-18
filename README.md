@@ -1,7 +1,7 @@
 # pbarETA
 
 This is an extended version of the `txtProgressBar` function from the
-utils package. Please refer to that documentation with
+`utils` package. Please refer to that documentation with
 `help(txtProgressBar, utils)`. Use `library(pbarETA, warn=F)` to
 override `utils::setTxtProgressBar` with `pbarETA::setTxtProgressBar`.
 
