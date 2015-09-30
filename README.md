@@ -1,4 +1,9 @@
-# pbarETA
+<!-- Grab your social icons from https://github.com/carlsednaoui/gitsocial -->
+[1.2]: http://i.imgur.com/wWzX9uB.png (me on Twitter)
+[1]: http://www.twitter.com/franapoli
+<!-- Grab your social icons from https://github.com/carlsednaoui/gitsocial -->
+
+# pbarETA [![alt text][1.2]][1]
 
 This is an extended version of the `txtProgressBar` function from the
 `utils` package. Please refer to that documentation with
